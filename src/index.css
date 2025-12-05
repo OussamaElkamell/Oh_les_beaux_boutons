@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Humanized Light Theme */
+    --background: 40 23% 95%; /* Warm Cream #F5F1E8 */
+    --foreground: 0 0% 10%; /* Near Black #1A1A1A */
+
+    --card: 0 0% 100%; /* Pure White */
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 160 50% 40%; /* Teal Green #2BAF8A */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 20% 90%; /* Light Warm Gray */
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 40 15% 92%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 43 96% 56%; /* Yellow #FDB022 */
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 72% 51%; /* Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 160 50% 40%;
+
+    --radius: 1rem;
+
+    /* Semantic colors */
+    --success: 160 50% 40%;
+    --warning: 43 96% 56%;
+
+    /* Pastel accent colors */
+    --pastel-blue: 210 100% 85%;
+    --pastel-green: 145 60% 85%;
+    --pastel-pink: 340 80% 88%;
+    --pastel-yellow: 45 100% 85%;
+    --pastel-purple: 270 60% 88%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 160 50% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 20% 95%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 160 50% 40%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 160 50% 45%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 160 50% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Clean Card */
+  .card-clean {
+    @apply bg-card rounded-3xl shadow-soft-md border border-border/50;
+  }
+
+  .card-clean:hover {
+    @apply shadow-soft-lg;
+  }
+
+  /* Pill Button Primary */
+  .btn-primary {
+    @apply relative overflow-hidden bg-foreground text-background font-body font-semibold 
+           px-8 py-4 rounded-full transition-all duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply scale-[1.02] shadow-soft-lg;
+  }
+
+  /* Pill Button Secondary */
+  .btn-secondary {
+    @apply relative overflow-hidden border-2 border-foreground/20 text-foreground font-body font-semibold 
+           px-8 py-4 rounded-full transition-all duration-200 bg-transparent;
+  }
+
+  .btn-secondary:hover {
+    @apply border-foreground/40 bg-secondary/50;
+  }
+
+  /* Accent Button */
+  .btn-accent {
+    @apply relative overflow-hidden bg-accent text-accent-foreground font-body font-semibold 
+           px-8 py-4 rounded-full transition-all duration-200;
+  }
+
+  .btn-accent:hover {
+    @apply scale-[1.02] shadow-soft-lg;
+  }
+
+  /* Progress Bar */
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out bg-primary;
+  }
+
+  /* Swipe Card */
+  .swipe-card {
+    @apply card-clean p-6;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .swipe-card:hover {
+    @apply shadow-soft-xl;
+    transform: translateY(-4px);
+  }
+
+  /* Pillar Card */
+  .pillar-card {
+    @apply card-clean p-8 transition-all duration-300;
+  }
+
+  .pillar-card:hover {
+    @apply shadow-soft-xl;
+    transform: translateY(-8px);
+  }
+
+  /* Tag/Badge styles */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .tag-success {
+    @apply bg-pastel-green text-foreground;
+  }
+
+  .tag-warning {
+    @apply bg-pastel-yellow text-foreground;
+  }
+
+  .tag-info {
+    @apply bg-pastel-blue text-foreground;
+  }
+
+  .tag-pink {
+    @apply bg-pastel-pink text-foreground;
+  }
+
+  .tag-purple {
+    @apply bg-pastel-purple text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Soft text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes swipe-left {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-150%) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes swipe-right {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes card-enter {
+  0% {
+    transform: scale(0.9) translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
